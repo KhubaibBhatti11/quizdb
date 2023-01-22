@@ -26,7 +26,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public DBHandler(Context context) {
         super(context, DATABASE_NAME, null, 1);
     }
-
+	//create table 
     @Override
     public void onCreate(SQLiteDatabase db) {
         String sql = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "("
@@ -37,14 +37,14 @@ public class DBHandler extends SQLiteOpenHelper {
                 + ")";
         db.execSQL(sql);
     }
-
+	//upgrade 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         String sql = "DROP TABLE IF EXISTS " + TABLE_NAME;
         db.execSQL(sql);
         onCreate(db);
     }
-
+// insert quiz function 
     public boolean insertQuiz(QuizData quiz) {
         try {
             SQLiteDatabase db = this.getWritableDatabase();
@@ -68,7 +68,7 @@ public class DBHandler extends SQLiteOpenHelper {
         }
         return false;
     }
-
+// update quiz
     public boolean updateQuiz(QuizData quiz) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
